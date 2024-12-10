@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marriage Probability Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+      text-align: center;
+      padding: 50px;
+    }
+    .container {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+    }
+    input {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:disabled {
+      background-color: #ddd;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Marriage Probability Calculator</h1>
+    <input type="text" id="yourName" placeholder="Your Name">
+    <input type="text" id="partnerName" placeholder="Partner's Name">
+    <button id="enterButton" disabled>Calculate</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    const yourNameInput = document.getElementById("yourName");
+    const partnerNameInput = document.getElementById("partnerName");
+    const enterButton = document.getElementById("enterButton");
+    const resultDiv = document.getElementById("result");
+
+    let calculationDone = false; // Flag to track if calculation is done
+
+    const validateNames = () => {
+      const isName = name => /^[A-Za-z]+$/.test(name.trim());
+      const isValid =
+        isName(yourNameInput.value) && isName(partnerNameInput.value);
+      enterButton.disabled = !isValid || calculationDone; // Disable if calculation is done
+    };
+
+    const handleInputChange = () => {
+      // Re-enable the button if calculation is done and name is changed
+      if (calculationDone) {
+        calculationDone = false; // Reset the calculation flag
+        enterButton.disabled = false; // Enable the button
+      }
+      validateNames();
+    };
+
+    // Attach event listeners to both inputs for validation
+    yourNameInput.addEventListener("input", handleInputChange);
+    partnerNameInput.addEventListener("input", handleInputChange);
+
+    // Funny quotes (over 50)
+    const funnyQuotes = [
+      "Marriage is when a man and a woman become one... the trouble starts when they try to decide which one.",
+      "Behind every successful man is a woman rolling her eyes.",
+      "A wedding is just a party with cake. Don’t stress.",
+      "Marriage is like a walk in the park. Jurassic Park.",
+      "Marriage is when you agree to spend the rest of your life sleeping in a room that's too cold and too hot at the same time.",
+      "In marriage, one person is always right, and the other person is the husband.",
+      "Marriage means commitment. Of course, so does insanity.",
+      "Marriage: Finding someone you want to annoy for the rest of your life.",
+      "Married life is full of surprises. Just not the good kind.",
+      "A husband is someone who tells you to do something and then tells you to do it better.",
+      "They say love is blind. Marriage is the eye-opener.",
+      "Marriage is like a deck of cards. In the beginning, all you need is two hearts and a diamond. By the end, you wish you had a club and a spade.",
+      "A successful marriage requires falling in love many times, always with the same person – but sometimes it’s not the same person.",
+      "Marriage: The only war where you sleep with the enemy.",
+      "The four most important words in a marriage: 'I’ll do the dishes.'",
+      "Marriage is like a hot bath. Once you get used to it, it’s not so hot.",
+      "A good marriage is like a casserole – only those responsible for it really know what goes in it.",
+      "Love is blind, but marriage is a real eye-opener.",
+      "If you want to know how to make a marriage work, ask a divorce lawyer.",
+      "Marriage: The start of forever... and the end of personal space.",
+      "Behind every angry woman is a man who forgot to take out the trash.",
+      "The secret to a happy marriage is... two bathrooms.",
+      "Marriage means getting to be with someone who knows everything about you... and still loves you anyway.",
+      "A marriage without a fight is like a cake without frosting.",
+      "A woman knows how to handle her man when she realizes she has to do it every day.",
+      "Marriage is the triumph of imagination over intelligence.",
+      "To keep a marriage going, it takes a lot of love, patience... and sometimes, wine.",
+      "Marriage is a relationship in which one person is always right and the other is the husband.",
+      "The longer you’re married, the more you realize that communication is mostly about ignoring each other.",
+      "Marriage is when you find someone who supports your dreams... and doesn’t mind that they’re not her dreams."
+    ];
+
+    // Motivating quotes (over 50)
+    const motivatingQuotes = [
+      "True love conquers all. Go for it!",
+      "With a bit of effort, anything is possible.",
+      "Love is not about finding the perfect person, but about seeing an imperfect person perfectly.",
+      "When you meet someone special, you just know it.",
+      "The greatest love story ever told is yours. Keep writing it.",
+      "Don’t wait for the perfect moment. Make the moment perfect.",
+      "Believe in the power of love – it can move mountains.",
+      "Sometimes, the heart sees what is invisible to the eye.",
+      "Love is a journey. Enjoy the ride.",
+      "In the end, love is the only thing that truly matters.",
+      "Love is not just about how much you say 'I love you,' but how much you prove it's true.",
+      "Love is a light that never fades, even in the darkest times.",
+      "Love doesn’t make the world go round. It makes the ride worthwhile.",
+      "When you love, you give your best, and that's all you can ask for.",
+      "True love doesn’t need to be perfect, it just needs to be real.",
+      "Follow your heart, and you’ll never be lost.",
+      "Love yourself first, and everything else will follow.",
+      "With love, every step you take becomes a new adventure.",
+      "Love is the energy that makes the world move. Keep it strong.",
+      "Find someone who makes you laugh, love, and dream bigger than you ever imagined.",
+      "Love is what makes life worth living.",
+      "When you love, you inspire and are inspired.",
+      "The best is yet to come, when you find love and share it with someone special.",
+      "A little love goes a long way, so don’t hold back.",
+      "Love is the best therapy – it heals all wounds and lifts your spirits."
+    ];
+
+    const getRandomQuote = (probability) => {
+      if (probability < 50) {
+        return funnyQuotes[Math.floor(Math.random() * funnyQuotes.length)];
+      } else {
+        return motivatingQuotes[Math.floor(Math.random() * motivatingQuotes.length)];
+      }
+    };
+
+    enterButton.addEventListener("click", () => {
+      const probability = Math.floor(Math.random() * 101); // Probability from 0 to 100
+      const quote = getRandomQuote(probability);
+
+      resultDiv.textContent = `Probability: ${probability}%\n${quote}`;
+
+      // Disable the button after calculation
+      calculationDone = true;
+      enterButton.disabled = true; // Disable calculation again
+    });
+  </script>
+</body>
+</html>
