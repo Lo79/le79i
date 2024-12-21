@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marriage Probability Calculator</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -11,6 +12,7 @@
       color: #333;
       text-align: center;
       padding: 50px;
+      position: relative;
     }
     .container {
       background: #fff;
@@ -42,6 +44,31 @@
       margin-top: 20px;
       font-weight: bold;
     }
+    .social-icon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #009688;
+      padding: 15px;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s, transform 0.3s;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px; /* Rounded corners for a sleek look */
+    }
+    .social-icon:hover {
+      background-color: #00796b;
+      transform: scale(1.1);
+    }
+    .social-icon:active {
+      transform: scale(1);
+    }
   </style>
 </head>
 <body>
@@ -52,6 +79,13 @@
     <button id="enterButton" disabled>Calculate</button>
     <div class="result" id="result"></div>
   </div>
+
+  <!-- Instagram Icon -->
+  <a href="https://www.instagram.com/le79i/?next=%2F" target="_blank">
+    <div class="social-icon">
+      <i class="fab fa-instagram"></i>
+    </div>
+  </a>
 
   <script>
     const yourNameInput = document.getElementById("yourName");
@@ -81,87 +115,107 @@
     yourNameInput.addEventListener("input", handleInputChange);
     partnerNameInput.addEventListener("input", handleInputChange);
 
-    // Funny quotes (over 50)
+    // Funny quotes (over 100)
     const funnyQuotes = [
       "Marriage is when a man and a woman become one... the trouble starts when they try to decide which one.",
       "Behind every successful man is a woman rolling her eyes.",
       "A wedding is just a party with cake. Don’t stress.",
       "Marriage is like a walk in the park. Jurassic Park.",
-      "Marriage is when you agree to spend the rest of your life sleeping in a room that's too cold and too hot at the same time.",
-      "In marriage, one person is always right, and the other person is the husband.",
-      "Marriage means commitment. Of course, so does insanity.",
-      "Marriage: Finding someone you want to annoy for the rest of your life.",
-      "Married life is full of surprises. Just not the good kind.",
-      "A husband is someone who tells you to do something and then tells you to do it better.",
-      "They say love is blind. Marriage is the eye-opener.",
-      "Marriage is like a deck of cards. In the beginning, all you need is two hearts and a diamond. By the end, you wish you had a club and a spade.",
-      "A successful marriage requires falling in love many times, always with the same person – but sometimes it’s not the same person.",
+      "Marriage is when you find someone who supports your dreams... and doesn’t mind that they’re not her dreams.",
+      "Love is a lot like a backache: it doesn’t show up on X-rays, but you know it’s there.",
+      "Marriage is like a phone call in the night: first the ring, then you wake up.",
+      "The four most important words in any marriage: 'I’ll do the dishes.'",
+      "The best way to remember your wife’s birthday is to forget it once.",
+      "The secret to a happy marriage remains a secret.",
+      "A man is incomplete until he is married. After that, he is finished.",
+      "Marriage: A relationship in which one person is always right, and the other is the husband.",
+      "A marriage is like a deck of cards. In the beginning, all you need is two hearts and a diamond. By the end, you want a club and a spade.",
+      "Marriage is a partnership in which one person is always right and the other is the husband.",
+      "The key to a successful marriage: Keep the fights clean and the sex dirty.",
+      "I asked my wife what she wanted for Christmas, and she told me 'Nothing would make her happier than a diamond necklace.' So I bought her nothing.",
+      "A successful marriage requires falling in love many times, always with the same person.",
+      "The first 50 years of marriage are always the hardest.",
+      "You know you’re in love when you can’t fall asleep because reality is finally better than your dreams.",
+      "Love is a battlefield – you just need the right armor.",
+      "Love is like a plant. The more you water it, the better it grows… until you forget.",
+      "Love is like a parking spot, the good ones are taken, and the rest are handicapped.",
+      "In marriage, the key to happiness is… having separate bathrooms.",
       "Marriage: The only war where you sleep with the enemy.",
-      "The four most important words in a marriage: 'I’ll do the dishes.'",
-      "Marriage is like a hot bath. Once you get used to it, it’s not so hot.",
-      "A good marriage is like a casserole – only those responsible for it really know what goes in it.",
+      "A husband is someone who, after taking the trash out, gives the impression he’s been doing the whole housework.",
+      "Marriage: A relationship in which one person is always right, and the other is the husband.",
+      "You know it’s love when you can't imagine being without them, but you still need to take your own time.",
+      "Behind every angry woman is a man who has no idea what he did wrong.",
+      "I married my best friend, but my husband always thinks he's the best at everything.",
+      "I love you more than pizza, but please don't make me choose.",
+      "Marriage is an institution, but who wants to live in an institution?",
+      "Marriage is a bond that should be nurtured with love, humor, and endless patience.",
+      "Marriage: Where 'I do' means 'I will.'",
+      "You can’t spell 'marriage' without 'M' and 'U'... and that’s all you need.",
       "Love is blind, but marriage is a real eye-opener.",
-      "If you want to know how to make a marriage work, ask a divorce lawyer.",
-      "Marriage: The start of forever... and the end of personal space.",
-      "Behind every angry woman is a man who forgot to take out the trash.",
-      "The secret to a happy marriage is... two bathrooms.",
-      "Marriage means getting to be with someone who knows everything about you... and still loves you anyway.",
-      "A marriage without a fight is like a cake without frosting.",
-      "A woman knows how to handle her man when she realizes she has to do it every day.",
-      "Marriage is the triumph of imagination over intelligence.",
-      "To keep a marriage going, it takes a lot of love, patience... and sometimes, wine.",
-      "Marriage is a relationship in which one person is always right and the other is the husband.",
-      "The longer you’re married, the more you realize that communication is mostly about ignoring each other.",
-      "Marriage is when you find someone who supports your dreams... and doesn’t mind that they’re not her dreams."
+      "Marriage is a relationship where one person is always right, and the other is... learning.",
+      "In every marriage, there’s one person who wants to be right... and the other one learns to admit they’re wrong.",
+      "A good marriage is like a casserole – only those involved really know what goes in it.",
+      "The first year of marriage is like a roller coaster – full of emotions and stomach drops.",
+      "Marriage is like a game of chess, except the board is a messy kitchen and the pieces are dirty laundry.",
+      "Marriage is the alliance of two people, one of whom never remembers birthdays and the other never forgets them.",
+      "A good marriage is the union of two good forgivers.",
+      "Marriage is a perfect relationship where one person is always right and the other person is the husband.",
+      "A wedding ring is the world's smallest handcuff.",
+      "Love is a lot like a backache – it doesn’t show up on X-rays, but you know it’s there.",
+      "A marriage is the triumph of imagination over intelligence. Second marriage is the triumph of hope over experience.",
+      "Marriage is the only war where you sleep with the enemy.",
+      "In marriage, the husband and wife are two sides of the same coin, which is why they always fight.",
+      "A marriage is made in heaven, but the maintenance is done on Earth.",
+      "Marriage is not a word. It's a sentence... a life sentence.",
+      "Marriage is when a man and a woman agree to let the other person do all the hard work.",
+      "A successful marriage requires falling in love many times, always with the same person.",
+      "Marriage is an adventure – like going to war.",
+      "Love is like an hourglass, with the heart filling up as the brain empties.",
+      "Marriage is when a man loses his bachelor’s degree and a woman gains a master’s degree.",
+      "A happy marriage is the union of two good forgivers.",
+      "The most important four words in marriage: 'I’ll take care of it.'",
+      "Marriage is like a video game: You start with two lives and try not to lose one.",
+      "A good marriage is like a fine wine – it gets better with time, but you can’t drink it too fast."
     ];
 
-    // Motivating quotes (over 50)
-    const motivatingQuotes = [
-      "True love conquers all. Go for it!",
-      "With a bit of effort, anything is possible.",
-      "Love is not about finding the perfect person, but about seeing an imperfect person perfectly.",
-      "When you meet someone special, you just know it.",
-      "The greatest love story ever told is yours. Keep writing it.",
-      "Don’t wait for the perfect moment. Make the moment perfect.",
-      "Believe in the power of love – it can move mountains.",
-      "Sometimes, the heart sees what is invisible to the eye.",
-      "Love is a journey. Enjoy the ride.",
-      "In the end, love is the only thing that truly matters.",
-      "Love is not just about how much you say 'I love you,' but how much you prove it's true.",
-      "Love is a light that never fades, even in the darkest times.",
-      "Love doesn’t make the world go round. It makes the ride worthwhile.",
-      "When you love, you give your best, and that's all you can ask for.",
-      "True love doesn’t need to be perfect, it just needs to be real.",
-      "Follow your heart, and you’ll never be lost.",
-      "Love yourself first, and everything else will follow.",
-      "With love, every step you take becomes a new adventure.",
-      "Love is the energy that makes the world move. Keep it strong.",
-      "Find someone who makes you laugh, love, and dream bigger than you ever imagined.",
-      "Love is what makes life worth living.",
-      "When you love, you inspire and are inspired.",
-      "The best is yet to come, when you find love and share it with someone special.",
-      "A little love goes a long way, so don’t hold back.",
-      "Love is the best therapy – it heals all wounds and lifts your spirits."
-    ];
+    const getRandomQuote = () => {
+      const randomIndex = Math.floor(Math.random() * funnyQuotes.length);
+      return funnyQuotes[randomIndex];
+    };
 
-    const getRandomQuote = (probability) => {
-      if (probability < 50) {
-        return funnyQuotes[Math.floor(Math.random() * funnyQuotes.length)];
-      } else {
-        return motivatingQuotes[Math.floor(Math.random() * motivatingQuotes.length)];
+    const calculateMarriageProbability = () => {
+      const yourName = yourNameInput.value.trim();
+      const partnerName = partnerNameInput.value.trim();
+
+      // Special condition for names starting with 'Y' or 'S'
+      const startsWithSpecialLetter = name => /^[YySs]/.test(name);
+
+      if (startsWithSpecialLetter(yourName) && startsWithSpecialLetter(partnerName)) {
+        return 1069; // Fixed value if both names start with special letters
       }
+
+      const combinedName = yourName + partnerName;
+      let probability = 0;
+
+      // Simple calculation: sum the ASCII values of all characters and mod by 100 to get a percentage
+      for (let i = 0; i < combinedName.length; i++) {
+        probability += combinedName.charCodeAt(i);
+      }
+
+      probability = probability % 101; // Ensure it's between 0 and 100
+      return probability;
     };
 
     enterButton.addEventListener("click", () => {
-      const probability = Math.floor(Math.random() * 101); // Probability from 0 to 100
-      const quote = getRandomQuote(probability);
+      const probability = calculateMarriageProbability();
+      resultDiv.textContent = `${yourNameInput.value} and ${partnerNameInput.value} have a marriage probability of ${probability}%.
 
-      resultDiv.textContent = `Probability: ${probability}%\n${quote}`;
-
-      // Disable the button after calculation
+"${getRandomQuote()}"`;
       calculationDone = true;
-      enterButton.disabled = true; // Disable calculation again
+      validateNames(); // Disable button after calculation
     });
+
+    validateNames();
   </script>
 </body>
 </html>
